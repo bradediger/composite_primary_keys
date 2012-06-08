@@ -50,9 +50,9 @@ ActiveRecord::Base.class_eval do
   include CompositePrimaryKeys::ActiveRecord::Base
 end
 
-Dir[File.dirname(__FILE__) + '/composite_primary_keys/connection_adapters/*.rb'].each do |adapter|
-  begin
-    require adapter.gsub('.rb','')
-  rescue MissingSourceFile
-  end
-end
+require_relative 'composite_primary_keys/connection_adapters/abstract_adapter'
+require_relative 'composite_primary_keys/connection_adapters/ibm_db_adapter'
+require_relative 'composite_primary_keys/connection_adapters/oracle_adapter'
+require_relative 'composite_primary_keys/connection_adapters/oracle_enhanced_adapter'
+require_relative 'composite_primary_keys/connection_adapters/postgresql_adapter'
+require_relative 'composite_primary_keys/connection_adapters/sqlite3_adapter'
